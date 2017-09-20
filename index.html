@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>vued</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <meta content="telephone=no" name="format-detection" />
+  <meta name="wap-font-scale" content="no">
+  <title>测试</title>
+  <script type="text/javascript">
+  //初始化界面缩放和根节点字体像素大小
+  var __root = document.documentElement,
+    viewport = __root.querySelector("meta[name='viewport']"),
+    scale = 1 / window.devicePixelRatio,
+    content = "width=device-width,initial-scale=" + scale + ",maximum-scale=" + scale + ",minimum-scale=" + scale + ",user-scalable=0",
+    baseWidth = 750,
+    baseFontSize = 100,
+    calFontSize = (parseInt(__root.clientWidth) / baseWidth * baseFontSize) * window.devicePixelRatio;
+  viewport.setAttribute("content", content);
+  __root.style.fontSize = calFontSize + "px";
+  </script>
+</head>
+
+<body ontouchstart="">
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
