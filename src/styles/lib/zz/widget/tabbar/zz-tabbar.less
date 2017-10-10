@@ -1,0 +1,30 @@
+.zz-tabbar {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.zz-tabbar-item {
+  display: block;
+  flex: 1;
+  margin: 0 .6rem;
+  img {
+    width: .5rem;
+    display: block;
+    margin: .12rem auto 0;
+  }
+  .zz-tabbar-label {
+    color: #bdc3d5;
+    font-size: .24rem;
+    text-align: center;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+  &.active {
+    .zz-tabbar-label {
+      color: #445c95;
+    }
+  }
+}
