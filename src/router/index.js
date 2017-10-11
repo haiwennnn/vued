@@ -13,19 +13,18 @@ export default new Router({
     component: Root,
     children: [{
       path: '',
-      name: 'Home',
       component: Home
     }, {
       path: 'home',
-      name: 'Home',
+      name: 'home',
       component: Home
     }, {
       path: 'pay',
-      name: 'Pay',
+      name: 'pay',
       component: Pay
     }, {
       path: 'mine',
-      name: 'Mine',
+      name: 'mine',
       component: Mine
     }]
   }]

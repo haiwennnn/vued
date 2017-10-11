@@ -2,8 +2,8 @@
   <div class="zz-footer">
     <div class="zz-footer-wrap">
       <div class="zz-tabbar">
-        <a href="javascript:;" class="zz-tabbar-item" v-for="tabbarItem in tabbars" @click="tabbarItemTouch(tabbarItem)">
-          <img :src="tabbarItem.icon">
+        <a href="javascript:;" class="zz-tabbar-item" v-for="(tabbarItem,index) in tabbars" @click="tabbarItemTouch(tabbarItem,index)" :class="{'active' : tabbarIndex === index}">
+          <img :src="tabbarIndex === index ? tabbarItem.activeIcon: tabbarItem.icon">
           <p class="zz-tabbar-label">{{tabbarItem.text}}</p>
         </a>
       </div>
@@ -30,22 +30,39 @@ export default {
       tabbars: [{
         text: '首页',
         icon: mainOff,
+        activeIcon: mainOn,
         router: 'mine'
       }, {
         text: '还款',
         icon: payOff,
+        activeIcon: payOn,
         router: 'pay'
       }, {
         text: '我的',
         icon: mineOff,
+        activeIcon: mineOn,
         router: 'mine'
       }]
     }
   },
-  methods: {
-    tabbarItemTouch: function(tabbarItem) {
-      console.log(tabbarItem)
+  computed: {
+    tabbarIndex() {
+      return this.$store.state.tabbarIndex
     }
+  },
+  methods: {
+    tabbarItemTouch: function(tabbarItem, index) {
+      this.$router.push({
+        name: tabbarItem.router
+      })
+      this.$store.commit({
+        type: 'switchTabbar',
+        index: index
+      })
+    }
+  },
+  created() {
+
   }
 }
 </script>
