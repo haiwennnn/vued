@@ -31,7 +31,7 @@ export default {
         text: '首页',
         icon: mainOff,
         activeIcon: mainOn,
-        router: 'mine'
+        router: 'home'
       }, {
         text: '还款',
         icon: payOff,
@@ -54,6 +54,10 @@ export default {
     tabbarItemTouch: function(tabbarItem, index) {
       this.$router.push({
         name: tabbarItem.router
+      })
+      this.$store.commit({
+        type: 'setPageName',
+        pageName: tabbarItem.router
       })
       this.$store.commit({
         type: 'switchTabbar',

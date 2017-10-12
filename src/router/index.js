@@ -3,13 +3,16 @@ import Router from 'vue-router'
 import Root from '@/app/root'
 import Home from '@/app/root_childs/home'
 import Pay from '@/app/root_childs/pay'
-import Mine from '@/app/root_childs/Mine'
+import Mine from '@/app/root_childs/mine'
+
+import Test from '@/app/test'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [{
     path: '/',
+    name: 'root',
     component: Root,
     children: [{
       path: '',
@@ -27,5 +30,9 @@ export default new Router({
       name: 'mine',
       component: Mine
     }]
+  }, {
+    path: '/test',
+    name: 'test',
+    component: Test
   }]
 })
