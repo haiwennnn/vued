@@ -17,6 +17,15 @@ export default {
   name: 'app',
   components: {
     ZHeader
+  },
+  watch: {
+    '$route' (to, from) {
+      let toName = to.name || 'home'
+      this.$store.commit({
+        type: 'setPageName',
+        pageName: toName
+      })
+    }
   }
 }
 </script>

@@ -11,7 +11,27 @@
 </template>
 <script>
 export default {
-  name: 'home'
+  name: 'home',
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    listenerHeaderEvent() {
+      window.BUS.$on('gotoTest', () => {
+        this.$router.push({
+          name: 'test'
+        })
+      })
+    }
+  },
+  created() {
+
+  },
+  mounted() {
+    this.listenerHeaderEvent()
+  }
 }
 </script>
 <style lang="less">

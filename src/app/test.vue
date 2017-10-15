@@ -11,7 +11,30 @@
 </template>
 <script>
 export default {
-  name: 'test'
+  name: 'test',
+  methods: {
+    setBackEvent() {
+      let info = JSON.parse(JSON.stringify(this.$store.state.pages[this.$store.state.currentPageName]))
+      info.back = {
+        event: 'showHello'
+      }
+      this.listenerSayHello()
+      this.$store.commit({
+        type: 'setPageItem',
+        name: 'test',
+        info: info
+      })
+    },
+    listenerSayHello() {
+      window.BUS.$on('showHello', () => {
+        alert('Hello')
+        this.$router.back()
+      })
+    }
+  },
+  created() {
+    this.setBackEvent()
+  }
 }
 </script>
 <style lang="less">
