@@ -16,7 +16,10 @@ export default {
     setBackEvent() {
       let info = JSON.parse(JSON.stringify(this.$store.state.pages[this.$store.state.currentPageName]))
       info.back = {
-        event: 'showHello'
+        event: {
+          type: 2,
+          name: 'showHello'
+        }
       }
       this.listenerSayHello()
       this.$store.commit({
@@ -33,7 +36,12 @@ export default {
     }
   },
   created() {
+
+  },
+  mounted() {
     this.setBackEvent()
+  },
+  destory() {
   }
 }
 </script>

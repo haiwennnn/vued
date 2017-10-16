@@ -1,7 +1,7 @@
 <template>
   <div class="zz-header">
     <div class="zz-header-wrap">
-      <div class="zz-hedaer-left" @click="headerToolEvent($event)">
+      <div class="zz-hedaer-left">
         <span class="zz-header-item" v-for="lItem in currentPage.left" @click="headerToolEvent(lItem)">
           {{lItem.text}}
           <i class="icon" :class="lItem.icon" v-if="lItem.icon"></i>
@@ -34,7 +34,6 @@ export default {
   computed: {
     currentPage() {
       let cp = JSON.parse(JSON.stringify(this.$store.state.pages[this.$store.state.currentPageName]))
-      console.log(cp)
         /*
           处理header左侧工具栏
           默认存在left按钮,可通过添加back属性进行设置
@@ -54,16 +53,23 @@ export default {
           event: 'back'
         })
       }
-      console.log(cp)
       return cp
     }
   },
   methods: {
     headerToolEvent: function(eventInfo) {
-      if (eventInfo.event === 'back') {
+      let event = eventInfo.event
+      if (event === 'back') {
         this.$router.back()
+        return
       }
-      if (eventInfo.event) window.BUS.$emit(eventInfo.event)
+      if (event.type === 1) {
+        this.$router.push(event)
+        return
+      }
+      if (event.type === 2) {
+        window.BUS.$emit(event.name)
+      }
     }
   }
 }

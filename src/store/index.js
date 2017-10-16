@@ -3,6 +3,11 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+/*
+  event
+    name 路由名|事件名
+    type 事件类型 {1:路由跳转,2:busEvent}
+*/
 export default new Vuex.Store({
   state: {
     tabbarIndex: 0, // roottabbar索引
@@ -14,9 +19,10 @@ export default new Vuex.Store({
         back: false,
         right: [{
           text: '测试页面',
-          event: 'gotoTest'
-        }, {
-          icon: 'ion-chatbubble-working'
+          event: {
+            name: 'test',
+            type: 1
+          }
         }]
       },
       pay: {

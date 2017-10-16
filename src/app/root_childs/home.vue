@@ -30,7 +30,7 @@ export default {
 
   },
   mounted() {
-    this.listenerHeaderEvent()
+
   }
 }
 </script>
