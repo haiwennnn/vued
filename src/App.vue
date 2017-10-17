@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div class="zz-container">
-      <z-header></z-header>
       <router-view></router-view>
     </div>
     <!-- <img src="./assets/logo.png">

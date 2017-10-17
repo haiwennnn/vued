@@ -27,7 +27,14 @@ export default new Vuex.Store({
       },
       pay: {
         title: '还款详情',
-        back: false
+        back: false,
+        right: [{
+          text: '测试页面1',
+          event: {
+            name: 'test',
+            type: 1
+          }
+        }]
       },
       mine: {
         title: '个人中心',

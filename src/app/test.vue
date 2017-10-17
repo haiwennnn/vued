@@ -1,17 +1,27 @@
 <template>
-  <div class="zz-body">
-    <div class="zz-body-wrap">
-      <div class="flex-demo">
-        <div class="zz-flex">
-          <div class="zz-flex-item">test</div>
+  <div class="zz-content">
+    <z-header></z-header>
+    <div class="zz-body">
+      <div class="zz-body-wrap">
+        <div class="flex-demo">
+          <div class="zz-flex">
+            <div class="zz-flex-item">test</div>
+            <div class="zz-flex-item">test</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import {
+  ZHeader
+} from '@/components'
 export default {
   name: 'test',
+  components: {
+    ZHeader
+  },
   methods: {
     setBackEvent() {
       let info = JSON.parse(JSON.stringify(this.$store.state.pages[this.$store.state.currentPageName]))
@@ -41,7 +51,8 @@ export default {
   mounted() {
     this.setBackEvent()
   },
-  destory() {
+  beforeDestroy() {
+    window.BUS.$off('showHello')
   }
 }
 </script>
