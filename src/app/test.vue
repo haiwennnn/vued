@@ -1,6 +1,6 @@
 <template>
   <div class="zz-content">
-    <z-header></z-header>
+    <z-header :title="'测试页面'" :backButton="false" :left="left" @evt-pageBack="pageBack"></z-header>
     <div class="zz-body">
       <div class="zz-body-wrap">
         <div class="flex-demo">
@@ -22,38 +22,31 @@ export default {
   components: {
     ZHeader
   },
-  methods: {
-    setBackEvent() {
-      let info = JSON.parse(JSON.stringify(this.$store.state.pages[this.$store.state.currentPageName]))
-      info.back = {
+  data() {
+    return {
+      left: [{
+        text: '返回',
         event: {
-          type: 2,
-          name: 'showHello'
+          name: 'evt-pageBack',
+          type: 2
         }
-      }
-      this.listenerSayHello()
-      this.$store.commit({
-        type: 'setPageItem',
-        name: 'test',
-        info: info
-      })
-    },
-    listenerSayHello() {
-      window.BUS.$on('showHello', () => {
-        alert('Hello')
-        this.$router.back()
-      })
+      }],
+      right: []
+    }
+  },
+  methods: {
+    pageBack() {
+      alert('pageBack')
+      this.$router.back()
     }
   },
   created() {
 
   },
   mounted() {
-    this.setBackEvent()
+
   },
-  beforeDestroy() {
-    window.BUS.$off('showHello')
-  }
+  beforeDestroy() {}
 }
 </script>
 <style lang="less">

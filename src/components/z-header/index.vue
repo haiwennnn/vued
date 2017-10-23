@@ -2,16 +2,16 @@
   <div class="zz-header">
     <div class="zz-header-wrap">
       <div class="zz-hedaer-left">
-        <span class="zz-header-item" v-for="lItem in currentPage.left" @click="headerToolEvent(lItem)">
+        <span class="zz-header-item" v-for="lItem in leftButtons" @click="headerToolEvent(lItem)">
           {{lItem.text}}
           <i class="icon" :class="lItem.icon" v-if="lItem.icon"></i>
         </span>
       </div>
       <div class="zz-header-title">
-        <span>{{currentPage.title}}</span>
+        <span>{{title}}</span>
       </div>
       <div class="zz-hedaer-right">
-        <span class="zz-header-item" v-for="rItem in currentPage.right" @click="headerToolEvent(rItem)">
+        <span class="zz-header-item" v-for="rItem in rightButtons" @click="headerToolEvent(rItem)">
           {{rItem.text}}
           <i class="icon" :class="rItem.icon" v-if="rItem.icon"></i>
         </span>
@@ -31,46 +31,80 @@ export default {
 
     }
   },
-  computed: {
-    currentPage() {
-      let cp = JSON.parse(JSON.stringify(this.$store.state.pages[this.$store.state.currentPageName]))
-        /*
-          处理header左侧工具栏
-          默认存在left按钮,可通过添加back属性进行设置
-          back:false 取消back
-          back:object 新的属性覆盖旧的属性
-        */
-      if (cp.hasOwnProperty('back')) {
-        if (cp.back) {
-          if (!cp.left) cp.left = []
-          if (!cp.back.icon) cp.back.icon = 'ion-ios-arrow-back'
-          cp.left.unshift(cp.back)
-        }
-      } else {
-        if (!cp.left) cp.left = []
-        cp.left.unshift({
-          icon: 'ion-ios-arrow-back',
-          event: 'back'
-        })
+  props: {
+    title: {
+      type: String,
+      default () {
+        return ''
       }
-      return cp
+    },
+    backButton: {
+      type: Boolean,
+      default () {
+        return true
+      }
+    },
+    left: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    right: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+
+  },
+  computed: {
+    /*
+      返回左侧按钮
+      backButton=false return this.leftButtons
+      backButton=true 加上返回按钮并增加this.leftButtons[0]
+    */
+    leftButtons() {
+      let leftBtns = []
+      if (!this.backButton) {
+        return this.left
+      }
+      leftBtns.push({
+        icon: 'ion-ios-arrow-back',
+        event: 'back'
+      })
+      this.left[0] && leftBtns.push(this.left[0])
+      return leftBtns
+    },
+    rightButtons() {
+      let rightBtns = []
+      this.right.forEach((data, index) => {
+        if (rightBtns.length <= 2) {
+          rightBtns.push(data)
+        }
+      })
+      return rightBtns
     }
   },
   methods: {
     headerToolEvent: function(eventInfo) {
+      console.log(eventInfo)
       let event = eventInfo.event
       if (event === 'back') {
         this.$router.back()
         return
       }
       if (event.type === 1) {
-        this.$router.push(event)
+        this.$router.push(event.name)
         return
       }
       if (event.type === 2) {
-        window.BUS.$emit(event.name)
+        this.$emit(event.name)
       }
     }
+  },
+  created() {
+    console.log(this)
   }
 }
 </script>
