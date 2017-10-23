@@ -19,10 +19,10 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      let toName = to.name || 'home'
+      let targetName = to.name || 'home'
       this.$store.commit({
         type: 'setPageName',
-        pageName: toName
+        pageName: targetName
       })
     }
   }

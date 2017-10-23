@@ -7,20 +7,28 @@ import router from './router'
 import store from './store'
 import mixins from './mixins'
 
-const BUS = new Vue()
-
-window.BUS = BUS
-
 Vue.config.productionTip = false
 
 mixins.init(Vue)
 
 router.beforeEach((to, from, next) => {
+  let targetName = to.name || 'home'
+  let oRootName = {
+    home: 0,
+    pay: 1,
+    mine: 2
+  }
+  if (oRootName[targetName] >= 0) {
+    store.commit({
+      type: 'switchTabbar',
+      index: oRootName[targetName]
+    })
+  }
   console.log(to)
   console.log(from)
   next()
 })
-
+/*  router.app.$options.components.App.store.state.isLogin */
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

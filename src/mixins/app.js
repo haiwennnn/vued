@@ -1,7 +1,5 @@
 let mixin = {
   destroyed() {
-    console.log('destroy')
-    // window.BUS.$off()
   }
 }
 

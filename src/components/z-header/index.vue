@@ -103,9 +103,7 @@ export default {
       }
     }
   },
-  created() {
-    console.log(this)
-  }
+  created() {}
 }
 </script>
 <style lang="less">

@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       left: [{
-        text: '返回',
+        icon: 'ion-ios-arrow-back',
         event: {
           name: 'evt-pageBack',
           type: 2

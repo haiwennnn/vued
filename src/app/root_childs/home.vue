@@ -18,13 +18,7 @@ export default {
     }
   },
   methods: {
-    listenerHeaderEvent() {
-      window.BUS.$on('gotoTest', () => {
-        this.$router.push({
-          name: 'test'
-        })
-      })
-    }
+
   },
   created() {
 
