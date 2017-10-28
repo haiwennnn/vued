@@ -7,6 +7,11 @@ import router from './router'
 import store from './store'
 import mixins from './mixins'
 
+import FastClick from 'fastclick'
+
+console.log(document)
+FastClick.attach(document.body)
+
 Vue.config.productionTip = false
 
 mixins.init(Vue)
