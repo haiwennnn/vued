@@ -56,7 +56,7 @@ export default {
         name: tabbarItem.router
       })
       this.$store.commit({
-        type: 'switchTabbar',
+        type: 'SWITCH_TABBAR',
         index: index
       })
     }

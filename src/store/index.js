@@ -12,7 +12,8 @@ export default new Vuex.Store({
   state: {
     tabbarIndex: 0, // roottabbar索引
     currentPageName: 'home', // 当前页面nane
-    lastPageName: '' // 上一个页面name
+    lastPageName: '', // 上一个页面name
+    isLoading: false
   },
   mutations: {
     /*
@@ -21,7 +22,7 @@ export default new Vuex.Store({
         index tabbar索引
       }
     */
-    switchTabbar(state, payload) {
+    SWITCH_TABBAR(state, payload) {
       state.tabbarIndex = payload.index
     },
     /*
@@ -31,9 +32,15 @@ export default new Vuex.Store({
         currentPageName 当前路由名称
       }
     */
-    setPageName(state, payload) {
+    SET_PAGE_NAME(state, payload) {
       state.lastPageName = state.currentPageName
       state.currentPageName = payload.pageName
+    },
+    OPEN_LOADING(state, payload) {
+      state.isLoading = true
+    },
+    CLOSE_LOADING(state, payload) {
+      state.isLoading = false
     }
   }
 })

@@ -9,7 +9,6 @@ import mixins from './mixins'
 
 import FastClick from 'fastclick'
 
-console.log(document)
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
@@ -25,7 +24,7 @@ router.beforeEach((to, from, next) => {
   }
   if (oRootName[targetName] >= 0) {
     store.commit({
-      type: 'switchTabbar',
+      type: 'SWITCH_TABBAR',
       index: oRootName[targetName]
     })
   }

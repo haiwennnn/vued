@@ -99,7 +99,9 @@ export default {
         return
       }
       if (event.type === 2) {
-        this.$emit(event.name)
+        this.$emit('evt-custom', {
+          name: event.name
+        })
       }
     }
   },

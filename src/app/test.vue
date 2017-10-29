@@ -1,6 +1,6 @@
 <template>
   <div class="zz-content">
-    <z-header :title="'测试页面'" :backButton="false" :left="left" @evt-pageBack="pageBack"></z-header>
+    <z-header :title="'测试页面'" :backButton="false" :left="left" :right="right" @evt-custom="evtCustom"></z-header>
     <div class="zz-body">
       <div class="zz-body-wrap">
         <div class="flex-demo">
@@ -27,17 +27,36 @@ export default {
       left: [{
         icon: 'ion-ios-arrow-back',
         event: {
-          name: 'evt-pageBack',
+          name: 'pageBack',
           type: 2
         }
       }],
-      right: []
+      right: [{
+        text: 'loading',
+        event: {
+          name: 'showLoading',
+          type: 2
+        }
+      }]
     }
   },
   methods: {
+    evtCustom(data) {
+      if (data.name === 'pageBack') {
+        this.pageBack()
+      }
+      if (data.name === 'showLoading') {
+        this.showLoading()
+      }
+    },
     pageBack() {
       alert('pageBack')
       this.$router.back()
+    },
+    showLoading() {
+      this.$store.commit({
+        type: 'OPEN_LOADING'
+      })
     }
   },
   created() {

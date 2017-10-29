@@ -3,7 +3,7 @@
     <div class="zz-body-wrap">
       <div class="flex-demo">
         <div class="zz-flex">
-          <div class="zz-flex-item">home</div>
+          <div class="zz-flex-item">home1</div>
         </div>
       </div>
     </div>
